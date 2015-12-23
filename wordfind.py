@@ -3,21 +3,13 @@ class WF:
 	def __init__(self):
 		with open('words.txt') as f:
 			self.words = [line.strip() for line in f.readlines()]
-		self.w_copy = self.words[:]
 		self.letters = {'+':[], '-':[]}
-		self.candidates = {}
 		self.mode = '+'
 		self.min_len = 8
 		self.max_len = 8
-		for word in self.words:
-			self.candidates[word] = word
 
 	def re_init(self):
-		self.words = self.w_copy[:]
 		self.letters = {'+':[], '-':[]}
-		self.candidates = {}
-		for word in self.words:
-			self.candidates[word] = word
 
 	def negative_letter_check(self, word, letters):
 		for letter in letters:
