@@ -2,9 +2,9 @@ from wordfind import WF
 
 w = WF()
 while True:
-	w.reset_letters(raw_input('\nLetters: '))
-	w.pare_words()
-	results = w.search(int(raw_input('\nMin Length: ')), int(raw_input('\nMax Length: ')))
+	w.set_letters(raw_input('\nLetters: '))
+	word_list = w.pare_words()
+	results = w.search(word_list)
 	print('\n' + '-'*15)
 	for word in results:
 		print(word)
