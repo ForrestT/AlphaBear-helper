@@ -7,14 +7,10 @@ class WF:
 		self.letters = {'+':[], '-':[]}
 		self.candidates = {}
 		self.mode = '+'
+		self.min_len = 8
+		self.max_len = 8
 		for word in self.words:
 			self.candidates[word] = word
-
-	def set_mode(self, sign):
-		if sign == '+':
-			self.mode = '+'
-		elif sign == '-':
-			self.mode = '-'
 
 	def re_init(self):
 		self.words = self.w_copy[:]
@@ -26,8 +22,8 @@ class WF:
 	def negative_letter_check(self, word, letters):
 		for letter in letters:
 			if letter in word:
-				return True
-		return False
+				return False
+		return True
 
 	def positive_letter_check(self, word, letters):
 		w_list = [l for l in word]
@@ -46,26 +42,6 @@ class WF:
 					matched_words.append(word)
 		return matched_words
 
-		# for letter in self.letters:
-		# 	if letter in '+-':
-		# 		self.set_mode(letter)
-		# 		continue
-		# 	words_to_remove = []
-		# 	for word in self.words:
-		# 		if letter in self.candidates[word]:
-		# 			if self.mode == 'positive':
-		# 				i = self.candidates[word].index(letter)
-		# 				self.candidates[word] = self.candidates[word][:i] + self.candidates[word][i+1:]
-		# 			elif self.mode == 'negative':
-		# 				words_to_remove.append(word)
-		# 		else:
-		# 			if self.mode == 'positive':
-		# 				words_to_remove.append(word)
-		# 			elif self.mode == 'negative':
-		# 				continue
-		# 	for word in words_to_remove:
-		# 		self.words.remove(word)
-
 	def set_letters(self, letter_str):
 		self.mode = '+'
 		l = []
@@ -79,14 +55,9 @@ class WF:
 		self.letters = {'+':[], '-':[]}
 		self.set_letters(letter_str)
 
-	def add_letters(self, letter_str):
-		temp = [letter for letter in letter_str]
-		self.letters += temp
-
-	def search(self, min_len, max_len, add_letter=''):
-		results = []
-		for word in self.words:
-			if len(word) <= max_len and len(word) >= min_len:
-				if add_letter == '' or add_letter in word:
-					results.append(word)
-		return results
+	def search(self, word_list):
+		matched_words = []
+		for word in word_list:
+			if len(word) <= self.max_len and len(word) >= self.min_len:
+				matched_words.append(word)
+		return matched_words
