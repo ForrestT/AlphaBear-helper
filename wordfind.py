@@ -38,12 +38,13 @@ class WF:
 				return False
 		return True
 
-	def pare_words(self):
+	def filter(self):
 		matched_words = []
 		for word in self.words:
-			if self.negative_letter_check(word, self.letters['-']):
-				if self.positive_letter_check(word, self.letters['+']):
-					matched_words.append(word)
+			if len(word) <= self.max_len and len(word) >= self.min_len:
+				if self.negative_letter_check(word, self.letters['-']):
+					if self.positive_letter_check(word, self.letters['+']):
+						matched_words.append(word)
 		return matched_words
 
 	def set_letters(self, letter_str):
@@ -58,10 +59,3 @@ class WF:
 	def reset_letters(self, letter_str):
 		self.letters = {'+':[], '-':[]}
 		self.set_letters(letter_str)
-
-	def search(self, word_list):
-		matched_words = []
-		for word in word_list:
-			if len(word) <= self.max_len and len(word) >= self.min_len:
-				matched_words.append(word)
-		return matched_words

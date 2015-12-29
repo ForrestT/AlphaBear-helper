@@ -13,8 +13,7 @@ def display_menu():
 	"""
 
 def display_results():
-	word_list = w.pare_words()
-	results = w.search(word_list)
+	results = w.filter()
 	print('\n' + '-'*15)
 	for word in results:
 		print(word)
