@@ -8,8 +8,20 @@ class WF:
 		self.min_len = 1
 		self.max_len = 16
 
+	def __repr__(self):
+		return """
+	Letter Filters:
+		+  : {}
+		-  : {}
+	Word Length Filters:
+		Min: {}
+		Max: {}
+	""".format(self.letters['+'], self.letters['-'], self.min_len, self.max_len)
+
 	def re_init(self):
 		self.letters = {'+':[], '-':[]}
+		self.min_len = 1
+		self.max_len = 16
 
 	def negative_letter_check(self, word, letters):
 		for letter in letters:
