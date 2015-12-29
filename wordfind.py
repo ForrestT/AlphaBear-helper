@@ -5,8 +5,8 @@ class WF:
 			self.words = [line.strip() for line in f.readlines()]
 		self.letters = {'+':[], '-':[]}
 		self.mode = '+'
-		self.min_len = 8
-		self.max_len = 8
+		self.min_len = 1
+		self.max_len = 16
 
 	def re_init(self):
 		self.letters = {'+':[], '-':[]}
